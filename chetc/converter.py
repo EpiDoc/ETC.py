@@ -15,31 +15,37 @@ class Converter(object):
     """ Leiden convention style to epidoc converter
 
 
-    :param replacements: List of tuples where the first element is a regular expression object that should feed a replacement
-     and the second a sub pattern
-    :type replacements: [(RegexObject, str)]
+    :param replacement_model: Class with replacements patterns
+    :type replacement_model: chetc.configs.base.ConverterReplacementModel
 
-    .. example ::
     """
 
-    def __init__(self, replacements=None):
-        if replacements is None:
-            self.replacements = list(Manfred.replacements())
+    def __init__(self, replacement_model=None):
+        if replacement_model is None:
+            self.__replacement_model__ = Manfred()
         else:
-            self.replacements = replacements
+            self.__replacement_model__ = replacement_model
         self.lineNum = 0
         self.wNum = 0
         self.id = 0
         self.ignoreLB = False
 
-        if replacements is not None:
-            for line in replacements.split("\n"):
-                if not line.startswith("#") and "=" in line:
-                    pattern, replacement = tuple(LINE_SPLIT.split(line, maxsplit=1))
-                    pattern, replacement = pattern.strip(), replacement.strip()
-                    if replacement == "null":
-                        replacement = ""
-                    self.replacements.append((re.compile(pattern), replacement))
+        self.__replacements__ = list(self.replacement_model.replacements())
+
+    @property
+    def replacement_model(self):
+        """ ReplacementModel instance used for configuration
+
+        :rtype: chetc.configs.base.ConverterReplacementModel
+        """
+        return self.__replacement_model__
+
+    @property
+    def replacements(self):
+        """ Yields tuples made of a RegexObject and a Replacement string
+
+        """
+        return self.__replacements__
 
     def reset(self):
         """ Reset the current object for a new document
@@ -60,7 +66,7 @@ class Converter(object):
         else:
             return text.count(find)
 
-    def lb(self):
+    def lb(self, *args):
         """ Makes and a register a line beginning ID
 
         :return: New line number
@@ -69,7 +75,7 @@ class Converter(object):
         self.lineNum += 1
         return str(self.lineNum)
 
-    def w(self):
+    def w(self, *args):
         """ Makes and register a word ID
 
         :return: New word number
