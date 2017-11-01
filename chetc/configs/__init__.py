@@ -1,0 +1,1 @@
+from .manfred import Manfred

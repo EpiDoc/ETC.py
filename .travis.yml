@@ -1,0 +1,22 @@
+language: python
+python:
+  - "3.4.5"
+  - "3.5"
+  - "3.6"
+# command to install dependencies
+install:
+    - pip install coveralls
+# command to run tests
+script:
+    - coverage run --source=chetc setup.py test
+after_success:
+    - coveralls
+
+deploy:
+  provider: pypi
+  user: ponteineptique
+  password: $PYPASS
+  on:
+    tags: true
+    python: "3.5"
+
