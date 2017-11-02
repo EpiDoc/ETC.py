@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 from chetc import __VERSION__
 
 setup(
-    name='CHETC',
+    name='chetc',
     version=__VERSION__,
     packages=find_packages(exclude=["tests"]),
     url='https://github.com/EpiDoc/ETC.py/',
