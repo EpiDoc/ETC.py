@@ -102,7 +102,7 @@ class Clauss(ConverterReplacementModel):
             ##########################################
 
             # Abbreviation inside Parentheses, even with supplied inside
-            ("(\w*)\[(" + Clauss.word_matcher_regularization + "*)\((\w+)\)(" + Clauss.word_matcher_regularization + "*)\]",
+            ("(\w*)\[(" + Clauss.word_matcher_regularization + "*)\((\w+\??)\)(" + Clauss.word_matcher_regularization + "*)\]",
                 "<expan><abbr>$1<supplied reason=\"lost\">$2</supplied></abbr><ex>$3</ex><abbr><supplied reason=\"lost\">$4</supplied></abbr></expan>"),
 
             ##########################################
@@ -158,7 +158,9 @@ class Clauss(ConverterReplacementModel):
             ("(<abbr></abbr>)", ""),
 
             # If two expan are glued, it means they are from the same group...
-            ("(</expan><expan>)", "")
+            ("(</expan><expan>)", ""),
+            # Ex that were not treated
+            ("<ex>(\w+)\?</ex>", "<ex cert=\"low\">$1</ex>")
 
         ]
         for pattern, replacement in x:

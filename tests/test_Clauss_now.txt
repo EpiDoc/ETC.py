@@ -10,3 +10,6 @@ http://db.edcs.eu/epigr/edcs_id.php?s_sprache=en&p_edcs_id=EDCS-25800673
 http://db.edcs.eu/epigr/edcs_id.php?s_sprache=en&p_edcs_id=EDCS-25900625
 M(arcum) Mari(um) ae[d(ilem)] v(irum) b(onum) [3]
 <lb n="1"/><expan><abbr>M</abbr><ex>arcum</ex></expan> <expan><abbr>Mari</abbr><ex>um</ex></expan> <expan><abbr>ae<supplied reason="lost">d</supplied></abbr><ex>ilem</ex></expan> <expan><abbr>v</abbr><ex>irum</ex></expan> <expan><abbr>b</abbr><ex>onum</ex></expan> <gap reason="lost" extent="3" unit="character"/>
+http://db.edcs.eu/epigr/edcs_id.php?s_sprache=en&p_edcs_id=EDCS-25900636
+[P]om[ponium(?)] / [ae]d(ilem) v(irum) b(onum) o[ro v(os) f(aciatis?)]
+<lb n="1"/><supplied reason="lost">P</supplied>om<supplied reason="lost" cert="low">ponium</supplied> <lb n="2"/> <expan><abbr><supplied reason="lost">ae</supplied>d</abbr><ex>ilem</ex></expan> <expan><abbr>v</abbr><ex>irum</ex></expan> <expan><abbr>b</abbr><ex>onum</ex></expan> o<supplied reason="lost">ro</supplied> <expan><abbr><supplied reason="lost">v</supplied></abbr><ex>os</ex></expan> <expan><abbr><supplied reason="lost">f</supplied></abbr><ex cert="low">aciatis</ex></expan>
