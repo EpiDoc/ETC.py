@@ -1,1 +1,1 @@
-from .manfred import Manfred
+from .clauss import Clauss

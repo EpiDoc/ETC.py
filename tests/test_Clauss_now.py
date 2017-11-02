@@ -1,15 +1,15 @@
 from chetc import Converter
 from unittest import TestCase
 import os
-from chetc.configs import Manfred
+from chetc.configs import Clauss
 
 
 class TestClauss(TestCase):
     def setUp(self):
-        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "test_manfred_now.txt")) as f:
+        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "test_Clauss_now.txt")) as f:
             lines = [x for x in f.readlines()]
             self.tests_strings = zip(*[lines[i::3] for i in range(3)])
-        self.converter = Converter(replacement_model=Manfred(word_numbering=False))
+        self.converter = Converter(replacement_model=Clauss(word_numbering=False))
         self.debug = False
         self.maxDiff = 50000
 

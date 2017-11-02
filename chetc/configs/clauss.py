@@ -2,8 +2,8 @@ import re
 from .base import ConverterReplacementModel
 
 
-class Manfred(ConverterReplacementModel):
-    """ Conversion class for the Manfred database
+class Clauss(ConverterReplacementModel):
+    """ Conversion class for the Clauss database
 
     :param word_numbering: Includes a word number every time a new word is found
     :type word_numbering: bool
@@ -25,9 +25,9 @@ class Manfred(ConverterReplacementModel):
             ("(\[\s*\/)", "[?] /"),
 
             # When a line ends with a provided character and an unknown loss
-            ("(\[("+Manfred.word_matcher_regularization+"*)\s*\/)",
+            ("(\[(" + Clauss.word_matcher_regularization + "*)\s*\/)",
                 "[$1] [?] /"),
-            ("\[("+Manfred.word_matcher_regularization+"+)\s*$",
+            ("\[(" + Clauss.word_matcher_regularization + "+)\s*$",
                 "[$1] [?]"),
 
             # When a line starts with an unknown content
@@ -35,17 +35,17 @@ class Manfred(ConverterReplacementModel):
                 '/ [?]'),
 
             # When a line starts with a provided character and an unknown content
-            ('(\/\s*('+Manfred.word_matcher_regularization+'*)\])',
+            ('(\/\s*(' + Clauss.word_matcher_regularization + '*)\])',
                 '/ [?] [$1]'),
-            ('^(\s*('+Manfred.word_matcher_regularization+'*)\])',
+            ('^(\s*(' + Clauss.word_matcher_regularization + '*)\])',
                 '[?] [$1]'),
 
             # When two words are spanning inside the same provided lacuna : [abc(ade!) abc(e)x(z!)]
-            ('\[('+Manfred.word_matcher_regularization+'+) ('+Manfred.word_matcher_regularization+'+)\]',
+            ('\[(' + Clauss.word_matcher_regularization + '+) (' + Clauss.word_matcher_regularization + '+)\]',
                 '[$1] [$2]'),
 
             # When three words are spanning inside the same provided lacuna : [abc(ade!) abc(e)x(z!) abc(e)x(z!)]
-            ('\[('+Manfred.word_matcher_regularization+'+) ('+Manfred.word_matcher_regularization+'+) ('+Manfred.word_matcher_regularization+'+)\]',
+            ('\[(' + Clauss.word_matcher_regularization + '+) (' + Clauss.word_matcher_regularization + '+) (' + Clauss.word_matcher_regularization + '+)\]',
                 '[$1] [$2] [$3]'),
 
             # Replace angular bracket by curved bracked
@@ -102,7 +102,7 @@ class Manfred(ConverterReplacementModel):
             ##########################################
 
             # Abbreviation inside Parentheses, even with supplied inside
-            ("\[("+Manfred.word_matcher_plus_square_brkcts+"*)\((\w+)\)("+Manfred.word_matcher_plus_square_brkcts+"*)\]",
+            ("\[(" + Clauss.word_matcher_plus_square_brkcts + "*)\((\w+)\)(" + Clauss.word_matcher_plus_square_brkcts + "*)\]",
                 "<supplied reason=\"lost\"><expan><abbr>$1</abbr><ex>$2</ex><abbr>$3</abbr></expan></supplied>"),
 
             ##########################################
@@ -110,15 +110,15 @@ class Manfred(ConverterReplacementModel):
             ##########################################
 
             # Parentheses, even with supplied inside
-            ("("+Manfred.word_matcher_plus_square_brkcts+"*)\((\w+)\)("+Manfred.word_matcher_plus_square_brkcts+"*)",
+            ("(" + Clauss.word_matcher_plus_square_brkcts + "*)\((\w+)\)(" + Clauss.word_matcher_plus_square_brkcts + "*)",
                 "<expan><abbr>$1</abbr><ex>$2</ex><abbr>$3</abbr></expan>"),
 
             # Parentheses with uncertain
-            ("("+Manfred.word_matcher_plus_square_brkcts+"*)\((\w+)(?:(?:\?)|(?:\(\?\)))\)("+Manfred.word_matcher_plus_square_brkcts+"*)",
+            ("(" + Clauss.word_matcher_plus_square_brkcts + "*)\((\w+)(?:(?:\?)|(?:\(\?\)))\)(" + Clauss.word_matcher_plus_square_brkcts + "*)",
                 "<expan><abbr>$1</abbr><ex cert=\"low\">$2</ex><abbr>$3</abbr></expan>"),
 
             # Parentheses with unextented parentheses
-            ("("+Manfred.word_matcher_plus_square_brkcts+"*)\(\)("+Manfred.word_matcher_plus_square_brkcts+"*)",
+            ("(" + Clauss.word_matcher_plus_square_brkcts + "*)\(\)(" + Clauss.word_matcher_plus_square_brkcts + "*)",
                 "<expan><abbr>$1</abbr><abbr>$2</abbr></expan>"),
 
             ##########################################
@@ -140,15 +140,15 @@ class Manfred(ConverterReplacementModel):
                 '<gap reason="lost" extent="$1" unit="character" cert="low"/>'),
 
             # When we supply an uncertain replacement
-            ("\[(" + Manfred.word_matcher_regularization + "+)\?\]",
+            ("\[(" + Clauss.word_matcher_regularization + "+)\?\]",
              '<supplied reason="lost" cert="low">$1</supplied>'),
-            ("\[(" + Manfred.word_matcher_regularization + "+)\(\?\)\]",
+            ("\[(" + Clauss.word_matcher_regularization + "+)\(\?\)\]",
              '<supplied reason="lost" cert="low">$1</supplied>'),
-            ("(\w*)\[(" + Manfred.word_matcher_regularization + "+)\](\w*)\(\?\)",
+            ("(\w*)\[(" + Clauss.word_matcher_regularization + "+)\](\w*)\(\?\)",
              '$1<supplied reason="lost" cert="low">$2</supplied>$3'),
 
             # When we supply a replacement
-            ("\[("+Manfred.word_matcher_regularization+"+)\]",
+            ("\[(" + Clauss.word_matcher_regularization + "+)\]",
                 '<supplied reason="lost">$1</supplied>'),
 
             ##########################################

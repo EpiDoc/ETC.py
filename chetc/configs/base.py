@@ -1,5 +1,5 @@
 class ConverterReplacementModel:
-    """ Conversion class for the Manfred database
+    """ Conversion class for the Clauss database
 
     :param word_numbering: Includes a word number every time a new word is found
     :type word_numbering: bool

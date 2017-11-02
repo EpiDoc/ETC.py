@@ -25,10 +25,10 @@ To use ETC.py, you need to create a converter instance and configure it with a C
 
 ```python
 from chetc import Converter
-from chetc.configs import Manfred
+from chetc.configs import Clauss
 
 # We initialize a converter and disable the word tagging and numbering
-converter = Converter(replacement_model=Manfred(word_numbering=False))
+converter = Converter(replacement_model=Clauss(word_numbering=False))
 # We run a single transformation and print it
 print(converter.convert("Sittium a[e]d(ilem) [o(ro) v(os)] f(aciatis)"))
 ```
