@@ -40,11 +40,11 @@ class Manfred(ConverterReplacementModel):
             ('^(\s*('+Manfred.word_matcher_regularization+'*)\])',
                 '[?] [$1]'),
 
-            # When two words are spanning inside the same provided lqcuna : [abc(ade!) abc(e)x(z!)]
+            # When two words are spanning inside the same provided lacuna : [abc(ade!) abc(e)x(z!)]
             ('\[('+Manfred.word_matcher_regularization+'+) ('+Manfred.word_matcher_regularization+'+)\]',
                 '[$1] [$2]'),
 
-            # When three words are spanning inside the same provided lqcuna : [abc(ade!) abc(e)x(z!) abc(e)x(z!)]
+            # When three words are spanning inside the same provided lacuna : [abc(ade!) abc(e)x(z!) abc(e)x(z!)]
             ('\[('+Manfred.word_matcher_regularization+'+) ('+Manfred.word_matcher_regularization+'+) ('+Manfred.word_matcher_regularization+'+)\]',
                 '[$1] [$2] [$3]'),
 
@@ -52,13 +52,20 @@ class Manfred(ConverterReplacementModel):
             ("<", "«"),
             (">", "»"),
 
-            ##########################################
-            # Word and line tagging
-            ##########################################
-
-            # Tag a word
-            ('([^\s/]+)',
-                '<w n="%mkIDW">$1</w>'),
+        ]
+        ##########################################
+        # Word and line tagging
+        ##########################################
+        if self.word_numbering:
+            x += [
+                # Tag a word
+                ('([^\s/]+)',
+                    '<w n="%mkIDW">$1</w>')
+            ]
+        x += [
+            # Tag the first line
+            ('^(.){0}',
+                '<lb n="%mkIDlb1"/>'),
             # Tag multiple lines
             ('(\/{2})(?!\w\>)',
              '<lb n="%mkIDlb1"/><gap extent="unknown" reason="lost" unit="line" />'),
@@ -112,7 +119,7 @@ class Manfred(ConverterReplacementModel):
 
             # Parentheses with unextented parentheses
             ("("+Manfred.word_matcher_plus_square_brkcts+"*)\(\)("+Manfred.word_matcher_plus_square_brkcts+"*)",
-                "<abbr>$1</abbr><abbr>$2</abbr>"),
+                "<expan><abbr>$1</abbr><abbr>$2</abbr></expan>"),
 
             ##########################################
             # Brackets
