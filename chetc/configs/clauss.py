@@ -154,7 +154,10 @@ class Clauss(ConverterReplacementModel):
             ##########################################
             # Clean Up
             ##########################################
-            ("(<abbr></abbr>)", "")
+            ("(<abbr></abbr>)", ""),
+
+            # If two expan are glued, it means they are from the same group...
+            ("(</expan><expan>)", "")
 
         ]
         for pattern, replacement in x:
