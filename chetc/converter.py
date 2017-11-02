@@ -1,4 +1,4 @@
-from .configs import Manfred
+from .configs import Clauss
 import re
 
 
@@ -22,7 +22,7 @@ class Converter(object):
 
     def __init__(self, replacement_model=None):
         if replacement_model is None:
-            self.__replacement_model__ = Manfred()
+            self.__replacement_model__ = Clauss()
         else:
             self.__replacement_model__ = replacement_model
         self.lineNum = 0

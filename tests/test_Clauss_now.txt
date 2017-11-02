@@ -4,3 +4,6 @@ C(aio) Iulio Caesare dict(atore) iter(um) / M(arco) Antonio mag(istro) eq(uitum)
 CIL 04, 00131
 Sittium a[e]d(ilem) [o(ro) v(os)] f(aciatis)
 <lb n="1"/>Sittium <expan><abbr>a<supplied reason="lost">e</supplied>d</abbr><ex>ilem</ex></expan> <supplied reason="lost"><expan><abbr>o</abbr><ex>ro</ex></expan></supplied> <supplied reason="lost"><expan><abbr>v</abbr><ex>os</ex></expan></supplied> <expan><abbr>f</abbr><ex>aciatis</ex></expan>
+http://db.edcs.eu/epigr/edcs_id.php?s_sprache=en&p_edcs_id=EDCS-25800673
+[3] Aqutium [3] / d(uum)v(irum) v(irum) [b(onum)]
+<lb n="1"/><gap reason="lost" extent="3" unit="character"/> Aqutium <gap reason="lost" extent="3" unit="character"/> <lb n="2"/> <expan><abbr>d</abbr><ex>uum</ex><abbr>v</abbr></expan><expan><ex>irum</ex></expan> <expan><abbr>v</abbr><ex>irum</ex></expan> <supplied reason="lost"><expan><abbr>b</abbr><ex>onum</ex></expan></supplied>
